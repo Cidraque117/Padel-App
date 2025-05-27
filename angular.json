@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Paddle-App": {
+    "padel-App": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/paddle-app",
+            "outputPath": "dist/padel-app",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -59,10 +59,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "Paddle-App:build:production"
+              "buildTarget": "padel-App:build:production"
             },
             "development": {
-              "buildTarget": "Paddle-App:build:development"
+              "buildTarget": "padel-App:build:development"
             }
           },
           "defaultConfiguration": "development"
