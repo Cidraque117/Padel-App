@@ -3,18 +3,18 @@ import { Login } from '../../interfaces/login.interface';
 import { AuthService } from '../../services/auth.service';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from '../home/home.component';
-import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { Router } from '@angular/router';
 
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
 
-  constructor(public service: AuthService) { }
+  constructor(public service: AuthService, public router: Router) { }
 
   public loginForm: FormGroup = new FormGroup({
     email: new FormControl(''),
@@ -31,12 +31,12 @@ export class LoginComponent {
       return;
     }
 
-    console.log("FORM: ", this.loginForm.value);
+    console.log('FORM: ', this.loginForm.value);
 
     this.service.login(this.loginForm.value).subscribe({
       next: (response) => {
         console.log('Respuesta del servidor:', response);
-        // TOKEN Y REDIRIGIR
+        this.router.navigateByUrl('/home')
       },
       error: (err) => {
         console.error('Error en login:', err);
