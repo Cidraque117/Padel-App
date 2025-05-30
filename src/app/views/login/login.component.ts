@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-import { Login } from '../../interfaces/login.interface';
 import { AuthService } from '../../services/auth.service';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { HomeComponent } from '../home/home.component';
 import { Router } from '@angular/router';
 
 
@@ -18,9 +16,9 @@ export class LoginComponent {
 
   public loginForm: FormGroup = new FormGroup({
     email: new FormControl(''),
-    password: new FormControl('')
+    password: new FormControl(''),
+    checkbox: new FormControl(false)
   });
-
   public errorMessage: string = '';
 
   public onSubmit(): void {
@@ -33,10 +31,20 @@ export class LoginComponent {
 
     console.log('FORM: ', this.loginForm.value);
 
+    const remember: boolean = this.loginForm.get('checkbox')?.value;
+
     this.service.login(this.loginForm.value).subscribe({
       next: (response) => {
         console.log('Respuesta del servidor:', response);
-        this.router.navigateByUrl('/home')
+
+        const token = response;
+        if (remember) {
+          localStorage.setItem('padel_token', token);
+        } else {
+          sessionStorage.setItem('padel_token', token);
+        }
+
+        this.router.navigateByUrl('/home');
       },
       error: (err) => {
         console.error('Error en login:', err);

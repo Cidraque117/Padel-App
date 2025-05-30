@@ -20,12 +20,10 @@
       </div>
       <div class="flex justify-between items-center mb-6">
         <label for="remember" class="flex items-center text-sm text-gray-500 dark:text-gray-300">
-          <!-- AQUI GUARDAR PASS LOCAL STORAGE? -->
-          <input type="checkbox" id="remember" class="mr-2 w-4 h-4">
+          <input type="checkbox" id="remember" formControlName="checkbox" class="mr-2 w-4 h-4">
           Recuérdame
         </label>
         <a href="#" class="text-sm text-gray-500 dark:text-gray-300 hover:underline">¿Olvidaste tu contraseña?</a>
-        <!-- AQUI PASAR A RECUPERACIÓN -->
       </div>
       @if (errorMessage) {
       <div class="flex justify-center gap-3 text-sm text-center text-gray-500 dark:text-gray-300 p-3">
