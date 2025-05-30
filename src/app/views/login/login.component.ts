@@ -39,7 +39,8 @@ export class LoginComponent {
 
         const token = response;
         if (remember) {
-          localStorage.setItem('padel_token', token);
+          sessionStorage.setItem('padel_token', token);
+          //GUARDAR REFRESH TOKEN, COOKIE HTTPONLY?
         } else {
           sessionStorage.setItem('padel_token', token);
         }
